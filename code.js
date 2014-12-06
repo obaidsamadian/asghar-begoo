@@ -59,26 +59,27 @@ var flag = 1;
 
 
 var dotPress = 0 ;
-$('.plz').on('keydown', function (e) {
+$('.plz').on('keypress', function (e) {
+    console.log(e);
+    if(e.charCode == 46){
 
-    if(e.keyCode == 190){
-        e.preventDefault();
         flag = flag * -1;
 
         if(dotPress % 2){
             $('.plz').get().value += qArry[$('.plz').get().value.length+1];
         }
         dotPress++;
+        e.preventDefault();
 
     }
 
     if(flag == -1){
         e.preventDefault();
 
-        if(e.keyCode != 190 && e.keyCode != 8) {
-            var cond = /[آ-ی]/.test(e.key)
+        if(e.charCode != 46 && e.charCode != 8) {
+            var cond = /[آ-ی]/.test(String.fromCharCode(e.charCode))
             if(cond){
-                answer = answer + e.key;
+                answer = answer + String.fromCharCode(e.charCode);
             }
 
         }else if(e.keyCode == 8){
